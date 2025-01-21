@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test and Chat Website</title>
+    <link rel="stylesheet" href="styless.css">
+</head>
+<body>
+
+<header>
+    <h1 style="text-align: center;">Test and Chat Platform</h1>
+    <nav>
+        <a href="#" onclick="showPage('test')">Take Test</a>
+        <a href="#" onclick="showPage('results')">Results</a>
+        <a href="#" onclick="showPage('chat')">Chat</a>
+    </nav>
+</header>
+    <!-- Test Page -->
+    <div id="test" class="page">
+        <h2>Take Test</h2>
+        <form id="testForm">
+            <div class="form-group">
+                <label for="question1">Question 1: How are you feeling today?</label>
+                <textarea id="question1" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="question2">Question 2: What are your main concerns?</label>
+                <textarea id="question2" required></textarea>
+            </div>
+            <button class="testbtn">Submit Test</button>
+        </form>
+    </div>
+
+    <!-- Results Page -->
+    <div id="results" class="page">
+        <h2>Your Results</h2>
+        <div id="resultContent">
+            <p>Complete the test to see your results and personalized advice.</p>
+        </div>
+    </div>
+
+    <!-- Chat Page -->
+    <div id="chat" class="page">
+        <h2>Chat with Others</h2>
+        <div id="chatWindow">
+            <!-- Messages will appear here -->
+        </div>
+        <input type="text" id="chatMessage" placeholder="Type your message">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Test and Chat Platform. All rights reserved.</p>
+</footer>
+
+<script>
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        document.getElementById(pageId).classList.add('active');
+    }
+
+    // Handle chat messages
+    const chatWindow = document.getElementById('chatWindow');
+    function sendMessage() {
+        const messageInput = document.getElementById('chatMessage');
+        const message = messageInput.value.trim();
+        if (message) {
+            const messageElement = document.createElement('p');
+            messageElement.textContent = `You: ${message}`;
+            chatWindow.appendChild(messageElement);
+            messageInput.value = '';
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+    }
+</script>
+
+</body>
+</html>
